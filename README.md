@@ -14,31 +14,37 @@
 
 ```
 npx create-react-app
+yarn add react-router-dom
+yarn add apollo-boost react-apollo graphql-tag graphql --save
+
+yarn global add nodemon
+yarn add graphql-yoga
+yarn global add babel-cli --ignore-engines
+yarn add babel-cli babel-preset-env babel-preset-stage-3 --dev
+yarn add babel-node --dev
 ```
 
-## Site map
+## Site map (folder structure)
 
 ```
 Main
 Login
 Signup
+
 Goods
 ./index
 ./details
 ./order
 ./orderend
-Review
-./index
-./write
 ```
 
 ## Schema
 
 ```
 member {
-	name,
+	id,
 	email,
-	phone,
+	name,
 }
 
 product {
