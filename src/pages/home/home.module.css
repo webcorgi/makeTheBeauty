@@ -1,0 +1,228 @@
+.Home {
+}
+.Textbox {
+  text-align: center;
+}
+.Textbox h2 {
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+.Textbox p {
+  font-size: 17px;
+}
+.Goodsbox {
+  height: 570px;
+  width: 600px;
+  position: relative;
+  text-align: center;
+  margin: 50px auto;
+}
+
+.Goodsbox:before {
+  content: "";
+  display: inline-block;
+  width: 75px;
+  height: 280px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.Goodsbox:after {
+  content: "";
+  display: inline-block;
+  width: 75px;
+  height: 280px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.Item {
+  width: 296px;
+  height: 150px;
+  position: relative;
+  margin: 0 auto;
+}
+.Item1 {
+  left: 20px;
+}
+.Item2 {
+  top: -20px;
+  left: -10px;
+}
+
+.Item img {
+  width: 100%;
+}
+
+.InnerText {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  color: #fff;
+  padding-left: 30px;
+  padding-top: 25px;
+}
+.ColorNum {
+  font-size: 10px;
+  line-height: 10px;
+  margin-bottom: 5px;
+}
+.ItemName {
+  font-size: 10px;
+  line-height: 10px;
+}
+
+.CodeName {
+  line-height: 14px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.Hashtag {
+  font-size: 10px;
+  line-height: 10px;
+}
+.Size {
+  margin-top: 15px;
+  font-size: 10px;
+  line-height: 10px;
+}
+
+.BracketLeft {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.BracketRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.Colorbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.Colorbox li {
+  width: 20%;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.Colorbox li label {
+  cursor: pointer;
+}
+
+.Colorbox div {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  position: relative;
+}
+
+.Colorbox input {
+  position: fixed;
+  left: -9999px;
+}
+
+.Colorbox input:checked + div {
+  transform: scale(1.5);
+}
+
+.CustomWrapper {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.InputGoodsnameWrap {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.InputGoodsnameWrap img {
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  padding: 10px;
+}
+
+.InputGoodsname {
+  width: 100%;
+  height: 40px;
+  border-radius: 50px;
+  background: #f0f4f6;
+  text-align: center;
+  border: 0;
+  outline: 0;
+  font-weight: bold;
+  font-size: 15px;
+  position: relative;
+}
+
+.BreacketLeftBlack {
+  left: 10px;
+}
+.BreacketRightBlack {
+  right: 10px;
+}
+
+.InputHashtagWrap {
+}
+
+.InputHashtagWrap label {
+  position: relative;
+  display: block;
+}
+
+.InputHashtag {
+  width: 100%;
+  height: 40px;
+  border-radius: 50px;
+  background: #f0f4f6;
+  text-align: center;
+  border: 0;
+  outline: 0;
+  font-weight: bold;
+  font-size: 15px;
+  position: relative;
+  margin-top: 5px;
+}
+
+.InputHashtag input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: none;
+  border: 0;
+  outline: 0;
+}
+
+.InputHashtag img {
+  position: absolute;
+  left: 20px;
+  top: 15px;
+}
+
+@media screen and (max-width: 767px) {
+  .Goodsbox {
+    width: 100%;
+  }
+
+  .BracketLeft,
+  .BracketRight {
+    display: none;
+  }
+
+  .Textbox h2 {
+    font-size: 24px;
+  }
+}

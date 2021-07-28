@@ -1,0 +1,402 @@
+@charset "utf-8";
+/* IE10 뷰포트 버그대응 */
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+@viewport {
+  width: device-width;
+}
+
+/* 리셋-에릭마이어 보완 */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+ol,
+ul,
+li,
+dt,
+dd {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+input,
+select {
+  vertical-align: middle;
+}
+h1 {
+  font-size: inherit;
+  line-height: 1;
+}
+img {
+  font-size: 0;
+  line-height: 0;
+  border: 0;
+  vertical-align: middle;
+}
+
+html {
+  font-family: sans-serif;
+  /* 스마트폰 font-size 자동조정 해제, none으로하면 오류남 */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  /* 스마트폰 링크 터치시 하이라이트 없앰 */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a {
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active,
+a:hover {
+  outline: 0;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+button {
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+select {
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+  cursor: pointer;
+}
+/* ie10,11에서 select 화살표 없애기  */
+select::-ms-expand {
+  display: none;
+}
+
+a:link {
+  color: #333;
+}
+a:visited {
+  color: #333;
+}
+a:hover {
+  color: gold;
+}
+a:active {
+  color: gold;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #3e464a;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  padding-top: 50px;
+}
+
+body * {
+  transition-duration: 0.3s;
+}
+
+.body_shadow {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.mobile {
+  display: none !important;
+}
+.pc {
+  display: block !important;
+}
+
+/* 여백 */
+.h5 {
+  height: 5px;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+.h10 {
+  height: 10px;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+.h20 {
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+.h30 {
+  height: 30px;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+.h40 {
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+.h50 {
+  height: 50px;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+.h60 {
+  height: 60px;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+.h70 {
+  height: 70px;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+.h80 {
+  height: 80px;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+.h90 {
+  height: 90px;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+.h100 {
+  height: 100px;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+.h110 {
+  height: 110px;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+.h120 {
+  height: 120px;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+.h130 {
+  height: 130px;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+.h140 {
+  height: 140px;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+i,
+cite,
+em,
+var,
+address,
+dfn {
+  font-style: normal;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  background: #fff;
+}
+
+.btn_common {
+  display: inline-block;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  border-radius: 8px;
+  background: #e44a4a;
+  color: #fff !important;
+  width: 277px;
+  margin-top: 30px;
+}
+
+.btn_common:hover {
+  color: #fff !important;
+}
