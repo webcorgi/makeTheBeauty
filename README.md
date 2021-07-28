@@ -38,7 +38,7 @@ src
 ./pages/order
 
 ./util   => 각종 유틸
-./ScrollTop => 기능 : 라우터 이동 시 항상 스크롤 최상위에서 시작
+./util/ScrollTop => 기능 : 라우터 이동 시 항상 스크롤 최상위에서 시작
 ```
 
 ## Schema
