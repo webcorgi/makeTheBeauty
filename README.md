@@ -20,6 +20,11 @@ yarn add react-router-dom
 
 // css module class 여러개 중첩가능
 yarn add classnames
+
+nodemon
+graphql
+apollo-server
+convert-csv-to-json
 ```
 
 ## folder structure
