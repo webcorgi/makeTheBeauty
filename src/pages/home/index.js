@@ -90,7 +90,7 @@ function Home() {
                         </label>
                     </div>
 
-                    <Link className="btn_common"><a>제품 주문하기</a></Link>
+                    <Link to="/order" ><a className="btn_common">제품 주문하기</a></Link>
                 </div>
             </div>
         </div>

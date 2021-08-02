@@ -1,87 +1,74 @@
 import React from 'react';
 import style from './Order.module.css';
+import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
 
 function Order() {
+
+    const cx = classNames.bind(style);
+
     return (
         <div className={style.Order}>
-            <div className="left">
+            <div className={style.Left}>
                 <h2>결제</h2>
-                <div className="title">주문자 정보</div>
-                <div className="input_title">이름</div>
-                <input type="text" className="inputStyle" placeholder="이름 입력" />
+                <div className={style.Title}>주문자 / 배송지 정보</div>
+                <div className={style.InputName}>이름</div>
+                <input type="text" className={style.InputStyle} placeholder="이름 입력" />
 
-                <div className="input_title">휴대폰 번호</div>
-                <input type="text" className="inputStyle" placeholder="휴대폰 번호 입력" />
+                <div className={style.InputName}>휴대폰 번호</div>
+                <input type="text" className={style.InputStyle} placeholder="휴대폰 번호 입력" />
 
-                <div className="title">배송지 정보</div>
-                <div className="input_title">이름</div>
-                <div className="input_addr">
-                    <input type="text" className="inputStyle addr" placeholder="주소 입력" readonly="" />
-                    <button className="btn_search"></button>
+
+                <div className={style.InputName}>배송지 주소</div>
+                <div className={style.InputAddress}>
+                    <input type="text" className={cx('InputStyle', 'Address')} placeholder="주소 입력" readonly="" />
+                    
+                    <button className={style.BtnSearch}><img src="/images/pay/ico_search.svg" alt="주소 버튼 이미지" /></button> 
                 </div>
-                <input type="text" className="inputStyle" placeholder="상세주소 입력" />
+                <input type="text" className={style.InputStyle} placeholder="상세주소 입력" />
             </div>
-            <div className="right">
-                <div className="orderInfoBox">
-                    <p className="title">
-                        <img src="../images/pay/ico_card.svg" alt="" />
+            <div className={style.Right}>
+                <div className={style.OrderInfoBox}>
+                    <p className={style.TitlePay}>
+                        <img src="/images/pay/ico_card.svg" alt="" />
                         결제 정보
                     </p>
-                    <ul>
+                    <ul className={style.PayList}>
                         <li>
-                            <span className="arr_down">제품 금액</span>
-                            <span>72,800원</span>
-                            <ul>
-                                <li>
-                                    <span>코드포뷰티 샴푸, 컨디셔너 300ml *2</span>
-                                    <span>12,800원</span>
-                                </li>
-                                <li>
-                                    <span>코드포뷰티 샴푸 700ml *1</span>
-                                    <span>27,800원</span>
-                                </li>
-                                <li>
-                                    <span>대나무 수건 * 1</span>
-                                    <span>9,800원</span>
-                                </li>
-                            </ul>
+                            <span>샴푸, 컨디셔너 500ml</span>
+                            <span>12,800원</span>
                         </li>
                         <li>
-                            <span className="arr_down">제품 할인 금액</span>
-                            <span>-28,800원</span>
-                            <ul>
-                                <li>
-                                    <span>기본 할인</span>
-                                    <span>-12,000원</span>
-                                </li>
-                                <li>
-                                    <span>쿠폰 사용 [50% 생일축하]</span>
-                                    <span>-2,000원</span>
-                                </li>
-                                <li>
-                                    <span>적립금 사용</span>
-                                    <span>-6,800원</span>
-                                </li>
-                            </ul>
+                            <span>색상</span>
+                            <span>블루</span>
                         </li>
                         <li>
-                            <span>배송비</span>
-                            <span>2,500원</span>
+                            <span>상품이름</span>
+                            <span>커스텀 샴푸</span>
                         </li>
                         <li>
+                            <span>해시태그1</span>
+                            <span>없음</span>
+                        </li>
+                        <li>
+                            <span>해시태그2</span>
+                            <span>없음</span>
+                        </li>
+                        <li>
+                            <span>해시태그3</span>
+                            <span>없음</span>
+                        </li>
+                        <li className={style.Total}>
                             <b>결제하실 금액</b>
-                            <b>
-                                53,900원
-                                <span>3,250원(5%) 적립</span>
-                            </b>
+                            <b>53,900원</b>
                         </li>
                     </ul>
+                    <Link to="/orderEnd">
+                        <button className={style.BtnPay}>결제하기</button>
+                    </Link>
                     
-                    <div className="h30"></div>
-                    
-                    <button className="">결제하기</button>
-                    결제를 진행하면 <a href="./privacy.php">결제서비스 약관</a> 및 배송을 위한<br />
-                    <a href="./terms.php">개인정보 제공 및 위탁</a>에 동의하는 것으로 간주합니다.
+                    <p className={style.SubText}>결제를 진행하면 결제서비스 약관 및 배송을 위한<br />
+                    개인정보 제공 및 위탁에 동의하는 것으로 간주합니다.</p>
                 </div>
             </div>
         </div>
