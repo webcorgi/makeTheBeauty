@@ -14,6 +14,7 @@ const typeDefs = gql`
     }
 
     input PostOrderInput {
+        user_id:Int!
         product: ProductEnum
         color: ColorEnum
         title: String

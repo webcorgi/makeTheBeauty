@@ -35,7 +35,7 @@ const typeDefs = gql`
     enum ProductEnum {
         shampoo
         conditioner
-        shampoo and conditioner
+        both
     }
 `
 
