@@ -18,8 +18,6 @@ const colors = require('./typedefs-resolvers/colors')
 const orders = require('./typedefs-resolvers/orders')
 const users = require('./typedefs-resolvers/users')
 
-
-
 const typeDefs = [
     queries,
     mutations,

@@ -13,17 +13,18 @@
 ## folder structure
 
 ```
-/data-in-csv => DB 역할용 csv파일
+/data-in-csv/*
+             => DB 역할용 csv파일
 
 /typedefs-resolvers/*
-=> typeDefs (스키마 형식정의)
-=> resolvers (dbworks에서 만든 Query, mutation 메서드 등록)
+             => typeDefs (스키마 형식정의)
+             => resolvers (dbworks에서 만든 Query, mutation 메서드 등록)
 
 /database.js => 각 CSV파일 불러와 DB에 등록
 
-/dbWorks.js => DB CRUD, 데이터 정제 ( 실제 DB사용시엔 SQL문으로 DB 데이터 이용 )
+/dbWorks.js  => DB CRUD, 데이터 정제 ( 실제 DB사용시엔 SQL문으로 DB 데이터 이용 )
 
-/index.js => typeDefs / resolvers를 Apolloserver에 등록. 최종 데이터 추출
+/index.js    => typeDefs / resolvers를 Apolloserver에 등록. 최종 데이터 추출
 ```
 
 ## CSV
