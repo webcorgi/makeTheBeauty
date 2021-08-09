@@ -2,16 +2,17 @@ const { gql } = require('apollo-server')
 const dbWorks = require('../dbWorks.js')
 
 const typeDefs = gql`
-    type Goods {
+    type Product {
         id:ID!
-        color:String
+        product_name:String
     }
 `
 
 
 const resolvers = {
     Query: {
-        goods: (parent, args) => dbWorks.getGoods(args)[0],
+        products: (parent, args) => dbWorks.getProducts(args),
+        product: (parent, args) => dbWorks.getProducts(args)[0],
     },
 }
 

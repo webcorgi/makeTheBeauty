@@ -118,7 +118,7 @@ const dbWorks = {
 
     getSupplies: (args) => dataFiltered('supplies', args),
 
-    getGoods: (args) => dataFiltered('goods', args),
+    getProducts: (args) => dataFiltered('products', args),
 }
 
 module.exports = dbWorks
