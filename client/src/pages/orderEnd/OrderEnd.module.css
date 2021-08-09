@@ -1,0 +1,10 @@
+.OrderEnd {
+  max-width: 790px;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.OrderEnd h2 {
+  font-size: 30px;
+}

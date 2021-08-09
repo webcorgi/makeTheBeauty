@@ -1,0 +1,170 @@
+.Order {
+  max-width: 790px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.Left {
+  width: 355px;
+}
+.Left h2 {
+  font-size: 29px;
+  padding-bottom: 30px;
+}
+
+.Title {
+  font-size: 19px;
+  font-weight: bold;
+  color: #aebac2;
+  padding-top: 50px;
+  padding-bottom: 0;
+}
+
+.InputName {
+  font-weight: bold;
+  padding-bottom: 5px;
+  padding-top: 20px;
+}
+
+.InputStyle {
+  height: 48px;
+  width: 100%;
+  line-height: 48px;
+  background: #f0f4f6;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  outline: 0;
+  text-indent: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.InputStyle:hover {
+  background: #fff;
+  border: 1px solid #73f3a0;
+  box-shadow: 0 0 1px 4px #e3fdec;
+}
+.InputStyle:focus {
+  background: #fff;
+  border: 1px solid #73f3a0;
+  box-shadow: 0 0 1px 4px #e3fdec;
+}
+.InputStyle::placeholder {
+  color: #aebac2;
+  font-size: 13px;
+}
+.InputStyle:disabled::placeholder {
+  color: #dee6ea;
+}
+
+.InputName {
+}
+
+.InputAddress {
+  position: relative;
+  margin-bottom: 10px;
+}
+.InputAddress.Address {
+}
+
+.BtnSearch {
+  background: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.Right {
+  width: 355px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.OrderInfoBox {
+  width: 355px;
+  position: absolute;
+  top: 50px;
+  box-shadow: 0px 8px 32px rgba(37, 78, 139, 0.1);
+  border-radius: 24px;
+  padding: 25px 16px;
+  background: #fff;
+}
+
+.arrDown {
+}
+.BtnPay {
+}
+
+.TitlePay {
+  display: flex;
+  font-size: 14px;
+  font-weight: bold;
+}
+.TitlePay img {
+  margin-right: 10px;
+}
+
+.PayList {
+}
+.PayList li {
+  padding: 10px 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+
+.PayList li:last-child {
+  border-bottom: 0;
+}
+
+.PayList li span {
+  text-align: left;
+}
+
+.PayList li span:nth-child(1) {
+}
+.PayList li span:nth-child(2) {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.BtnPay {
+  display: inline-block;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  border-radius: 8px;
+  width: 100%;
+  background: #333;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.BtnPay:hover {
+  background: #000;
+}
+
+.SubText {
+  font-size: 11px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: -0.3px;
+  color: #aebac2;
+  margin-top: 15px;
+}
+
+.Total {
+}
+
+.Total b {
+  font-size: 14px;
+}
+
+.Total b:nth-child(2) {
+  position: absolute;
+  right: 10px;
+}

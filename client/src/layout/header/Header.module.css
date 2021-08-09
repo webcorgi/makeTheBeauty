@@ -1,0 +1,101 @@
+.HeaderPc {
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #fff;
+  box-shadow: rgb(0 0 0 / 4%) 0px 8px 16px;
+}
+
+.HeaderPc a {
+  font-size: 14px;
+  margin: 0 10px;
+}
+
+.Logo {
+  position: absolute;
+  left: 15px;
+  top: 13px;
+  font-weight: bold;
+}
+
+.HeaderMobile {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .HeaderPc {
+    display: none;
+  }
+
+  .Logo {
+    position: relative;
+    top: 0;
+    left: 0;
+    font-size: 17px;
+  }
+  .HeaderMobile {
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #fff;
+    box-shadow: rgb(0 0 0 / 4%) 0px 8px 16px;
+  }
+
+  .HeaderMobile nav {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 90%;
+    height: 100%;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .HeaderMobile nav[isshow="active"] {
+    right: 0;
+  }
+
+  .HeaderMobile nav a {
+    display: block;
+    font-size: 30px;
+    margin-top: 50px;
+    padding-left: 10px;
+  }
+
+  .HeaderMobile nav p {
+    padding-left: 20px;
+    padding-top: 80px;
+    color: gray;
+    font-size: 17px;
+  }
+
+  .NavClose {
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    background: none;
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  .NavOpen {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    background: none;
+  }
+}
