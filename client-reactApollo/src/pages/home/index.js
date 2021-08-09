@@ -3,6 +3,9 @@ import style from './Home.module.css';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 
+import { useState } from 'react';
+import { useQuery, useMutation, gql } from '@apollo/client';
+
 const colorArr = [
     'blue',
     'green',
@@ -10,10 +13,25 @@ const colorArr = [
     'violet'
 ]
 
+const GET_ROLES = gql`
+  query GetRoles {
+    roles {
+      id
+    }
+  }
+`;
+
 function Home() {
     const cx = classNames.bind(style);
 
+    const [contentId, setContentId] = useState('');
 
+    const { loading, error, data } = useQuery(GET_ROLES);
+    if (loading) return <p className="loading">Loading...</p>
+    if (error) return <p className="error">Error :(</p>
+        
+    console.log("🚀 ~ file: index.js ~ line 30 ~ Home ~ data", data)
+    
     return (
         <div className={style.Home}>
 
