@@ -4,3 +4,15 @@
 
 - client => react / apollo client
 - server => graphQL
+
+---
+
+client / server each yarn & yarn start
+
+```
+// client, server start
+yarn start
+```
+
+client : localhost:3000
+server : localhost:4000
