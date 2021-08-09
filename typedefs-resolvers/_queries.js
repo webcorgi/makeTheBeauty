@@ -29,6 +29,7 @@ const typeDefs = gql`
         software(id: ID!): Software
         supplies(team: ID): [Supply]
         supply(id: ID!): Supply,
+        goods( id:ID!) : Goods
     }
 `
 

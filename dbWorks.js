@@ -112,12 +112,13 @@ const dbWorks = {
             equipment.count += 1 
             return equipment
         })[0]
-
     },
 
     getSoftwares: (args) => dataFiltered('softwares', args),
 
     getSupplies: (args) => dataFiltered('supplies', args),
+
+    getGoods: (args) => dataFiltered('goods', args),
 }
 
 module.exports = dbWorks
