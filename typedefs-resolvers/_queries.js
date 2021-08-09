@@ -30,8 +30,17 @@ const typeDefs = gql`
         supplies(team: ID): [Supply]
         supply(id: ID!): Supply,
 
-        products : [Product]
-        product( id:ID!) : Product
+        products: [Product]
+        product(id: ID!): Product
+        
+        orders: [Order]
+        order(id: ID!): Order
+
+        colors: [Color]
+        color(id: ID!): Color
+
+        users: [User]
+        user(id: ID!): User
     }
 `
 

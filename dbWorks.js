@@ -23,6 +23,7 @@ const dataFiltered = (which, args) => {
 }
 
 const dbWorks = {
+    /* 
     deleteItem: (which, args) => {
         const deleted = database[which].filter((item) => {
             return item.id == args.id
@@ -32,7 +33,7 @@ const dbWorks = {
         })
         return deleted
     },
-
+    */
     getTeams: (args) => dataFiltered('teams', args)
         .map((team) => {
             team.members = dbWorks.getPeople({team: team.id})
@@ -115,10 +116,44 @@ const dbWorks = {
     },
 
     getSoftwares: (args) => dataFiltered('softwares', args),
-
     getSupplies: (args) => dataFiltered('supplies', args),
 
+    // start
     getProducts: (args) => dataFiltered('products', args),
+    getColors: (args) => dataFiltered('colors', args),
+    getUsers: (args) => dataFiltered('users', args),
+    getOrders: (args) => dataFiltered('orders', args),
+    
+    postOrder: (args) => {
+        const newOrder = {
+            id: database.orders.map((order) => {
+                return Number(order.id)
+            }).reduce((a, b) => {
+                return Math.max(a, b)
+            }, 0) + 1,
+            ...args.input
+        }
+        database.orders.push(newOrder)
+        return newOrder
+    },
+    editOrder: (args) => {
+        return database.orders.filter((order) => {
+            return order.id == args.id
+        }).map((order) => {
+            Object.assign(order, args.input)
+            return order 
+        })[0]
+    },
+
+    deleteItem: (which, args) => {
+        const deleted = database[which].filter((item) => {
+            return item.id == args.id
+        })[0]
+        database[which] = database[which].filter((item) => {
+            return item.id != args.id
+        })
+        return deleted
+    },
 }
 
 module.exports = dbWorks

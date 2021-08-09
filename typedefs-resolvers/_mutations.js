@@ -25,6 +25,13 @@ const typeDefs = gql`
         increaseEquipment(
             id: ID!,
         ): Equipment!
+
+        postOrder(input: PostOrderInput!): Order!,
+        editOrder(
+            id: ID!,
+            input: PostOrderInput!
+        ): Team!
+        deleteOrder(id: ID!): Order!
     }
 `
 

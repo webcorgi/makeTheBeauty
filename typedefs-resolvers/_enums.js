@@ -23,6 +23,20 @@ const typeDefs = gql`
         new
         used
     }
+
+
+    enum ColorEnum {
+        red
+        blue
+        green
+        violet
+    }
+
+    enum ProductEnum {
+        shampoo
+        conditioner
+        shampoo and conditioner
+    }
 `
 
 module.exports = typeDefs

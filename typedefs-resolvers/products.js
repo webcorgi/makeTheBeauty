@@ -4,7 +4,7 @@ const dbWorks = require('../dbWorks.js')
 const typeDefs = gql`
     type Product {
         id:ID!
-        product_name:String
+        kind:String
     }
 `
 
