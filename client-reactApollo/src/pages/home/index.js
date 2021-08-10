@@ -1,37 +1,77 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './Home.module.css';
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-import { useState } from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client';
 
-const colorArr = [
-    'blue',
-    'green',
-    'red',
-    'violet'
-]
-
-const GET_ROLES = gql`
-  query GetRoles {
-    roles {
-      id
+/**
+ * graphQL
+ */
+const GET_COLORS = gql`
+    query{
+        colors{
+            id
+            color_name
+        }
     }
-  }
 `;
+
+
 
 function Home() {
     const cx = classNames.bind(style);
+    const history = useHistory();
 
-    const [contentId, setContentId] = useState('');
+    const [selectedColor, setSelectedColor] = useState('red');
+    const [productName, setProductName] = useState('');
+    const [hashtag, setHashtag] = useState([
+        {
+            id:1,
+            hashtag1:'',
+        },
+        {
+            id:2,
+            hashtag2:'',
+        },
+        {
+            id:3,
+            hashtag3:'',
+        },
+    ]);
 
-    const { loading, error, data } = useQuery(GET_ROLES);
-    if (loading) return <p className="loading">Loading...</p>
-    if (error) return <p className="error">Error :(</p>
-        
-    console.log("🚀 ~ file: index.js ~ line 30 ~ Home ~ data", data)
-    
+
+    const clickColor = (color) => {
+        setSelectedColor(color);
+    }
+
+    const changeProductName = (e) => {
+        setProductName(e.target.value)
+    }
+
+    const changeHashtag = (e, num) => {
+        const { value, name } = e.target;
+        // console.log(e.target.value)
+/* 
+        setHashtag([
+            ...hashtag,
+            {
+                [name]: value
+            }
+        ]) */
+    }
+
+    const clickSubmit = () => {
+        history.push("/order")
+    }
+
+
+    const get_colors = useQuery(GET_COLORS);
+
+    if (get_colors.loading) return <p className="loading">Loading...</p>
+    if (get_colors.error) return <p className="error">Error :(</p>
+
+
     return (
         <div className={style.Home}>
 
@@ -54,7 +94,7 @@ function Home() {
                         </p>
                         <p className={style.Size}>300ml / 10.14 fl. oz.</p>
                     </div>
-                    <img src="/images/goods/goods_violet.png" alt="상품이미지1" />
+                    <img src={`/images/goods/goods_${selectedColor}.png`} alt="상품이미지1" />
                 </div>
 
                 <div className={cx('Item', 'Item2')}>
@@ -67,18 +107,18 @@ function Home() {
                         </p>
                         <p className={style.Size}>300ml / 10.14 fl. oz.</p>
                     </div>
-                    <img src="/images/goods/goods_violet.png" alt="상품이미지2" />
+                    <img src={`/images/goods/goods_${selectedColor}.png`} alt="상품이미지2" />
                 </div>
 
                 <div className={style.CustomWrapper}>
                     <ul className={style.Colorbox}>
                         {
-                            colorArr.map((color, i) => {
+                            get_colors.data.colors.map((color, i) => {
                                 return (
-                                    <li key={i}>
-                                        <label>
+                                    <li key={color.id}>
+                                        <label onClick={() => clickColor(color.color_name)}>
                                             <input type="radio" className="color_shampoo" name="color_shampoo" />
-                                            <div style={{background:color}}></div>
+                                            <div style={{background:color.color_name}}></div>
                                         </label>
                                     </li>
                                 )
@@ -89,26 +129,31 @@ function Home() {
                     <div className={style.InputGoodsnameWrap}>
                         <img src="/images/main/bracket_left_black.svg" className={style.BreacketLeftBlack} />
                         <img src="/images/main/bracket_right_black.svg" className={style.BreacketRightBlack} />
-                        <input type={"text"} className={style.InputGoodsname}  placeholder={"상품이름"} />
+                        <input type={"text"} className={style.InputGoodsname} onChange={changeProductName}  placeholder={"상품이름"} />
                     </div>
 
 
                     <div className={style.InputHashtagWrap}>
-                        <label className={style.InputHashtag}>
-                            <img src="/images/main/hashtag.svg" />
-                            <input type="text" placeholder="해시태그" />
-                        </label>
-                        <label className={style.InputHashtag}>
-                            <img src="/images/main/hashtag.svg" />
-                            <input type="text" placeholder="해시태그" />
-                        </label>
-                        <label className={style.InputHashtag}>
-                            <img src="/images/main/hashtag.svg" />
-                            <input type="text" placeholder="해시태그" />
-                        </label>
+                        {
+                            hashtag.map((tag, i) => {
+
+                                return (
+                                    <label key={i} className={style.InputHashtag}>
+                                        <img src="/images/main/hashtag.svg" />
+                                        <input type="text" name={`hashtag${i}`} placeholder="해시태그" onChange={(e) => changeHashtag(e, i)} />
+                                    </label>
+                                )
+                            })
+                        }
                     </div>
 
-                    <Link to="/order" ><a className="btn_common">제품 주문하기</a></Link>
+                    <a 
+                        className="btn_common"
+                        style={{backgroundColor:`${selectedColor}`}}
+                        onClick={clickSubmit}
+                    >
+                        제품 주문하기
+                    </a>
                 </div>
             </div>
         </div>

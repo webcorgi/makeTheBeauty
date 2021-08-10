@@ -395,8 +395,11 @@ table {
   color: #fff !important;
   width: 277px;
   margin-top: 30px;
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 .btn_common:hover {
   color: #fff !important;
+  opacity: 1;
 }
