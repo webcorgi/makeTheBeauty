@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import style from './Home.module.css';
 import classNames from 'classnames/bind';
 import { Link, useHistory } from 'react-router-dom';
@@ -27,40 +27,56 @@ function Home() {
     const [productName, setProductName] = useState('');
     const [hashtag, setHashtag] = useState([
         {
+            id:0,
+            tag_name:'',
+        },
+        {
             id:1,
-            hashtag1:'',
+            tag_name:'',
         },
         {
             id:2,
-            hashtag2:'',
-        },
-        {
-            id:3,
-            hashtag3:'',
+            tag_name:'',
         },
     ]);
 
+    useEffect(() => {
+        console.log("🚀 ~ file: index.js ~ line 100 ~ Home ~ tag", hashtag)
+    }, [hashtag]);
 
+
+    // 색상
     const clickColor = (color) => {
         setSelectedColor(color);
     }
 
+    // 상품이름
     const changeProductName = (e) => {
         setProductName(e.target.value)
     }
 
-    const changeHashtag = (e, num) => {
-        const { value, name } = e.target;
-        // console.log(e.target.value)
-/* 
-        setHashtag([
-            ...hashtag,
+    // 해시태그1,2,3
+    const changeHashtag = (e, idx) => {
+        const { value } = e.target;
+
+        // input value 저장
+        let getHashtag = [
+            ...hashtag.filter(h => h.id !== idx),
             {
-                [name]: value
+                id:idx,
+                tag_name: value
             }
-        ]) */
+        ];
+
+        // id 기준으로 오름차순 정렬
+        getHashtag.sort((a,b) => { 
+            return a.id-b.id;
+        })
+
+        setHashtag(getHashtag)
     }
 
+    // 제품 주문하기
     const clickSubmit = () => {
         history.push("/order")
     }
@@ -88,9 +104,16 @@ function Home() {
                     <div className={style.InnerText}>
                         <p className={style.ColorNum}>#291253</p>
                         <p className={style.ItemName}>SHAMPOO</p>
-                        <p className={style.CodeName}>BEAUTY</p>
+                        <p className={style.CodeName}>{productName !== '' ? productName : 'BEAUTY'}</p>
                         <p className={style.Hashtag}>
-                            PERSONALIZED HAIR CARE
+                            {
+                                hashtag.map((tag, i) => 
+                                    tag.tag_name !== '' &&
+                                    <span key={i}>
+                                        {`#${tag.tag_name} `}
+                                    </span>
+                                )
+                            }
                         </p>
                         <p className={style.Size}>300ml / 10.14 fl. oz.</p>
                     </div>
@@ -101,9 +124,16 @@ function Home() {
                     <div className={style.InnerText}>
                         <p className={style.ColorNum}>#291253</p>
                         <p className={style.ItemName}>CONDITIONER</p>
-                        <p className={style.CodeName}>BEAUTY</p>
+                        <p className={style.CodeName}>{productName !== '' ? productName : 'BEAUTY'}</p>
                         <p className={style.Hashtag}>
-                            PERSONALIZED HAIR CARE
+                            {
+                                hashtag.map((tag, i) => 
+                                    tag.tag_name !== '' &&
+                                    <span key={i}>
+                                        {`#${tag.tag_name} `}
+                                    </span>
+                                )
+                            }
                         </p>
                         <p className={style.Size}>300ml / 10.14 fl. oz.</p>
                     </div>
