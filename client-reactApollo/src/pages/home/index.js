@@ -40,10 +40,6 @@ function Home() {
         },
     ]);
 
-    useEffect(() => {
-        console.log("🚀 ~ file: index.js ~ line 100 ~ Home ~ tag", hashtag)
-    }, [hashtag]);
-
 
     // 색상
     const clickColor = (color) => {
