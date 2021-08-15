@@ -17,19 +17,6 @@ const GET_COLORS = gql`
     }
 `;
 
-const POST_ORDER = gql`
-    mutation PostOrder($input: PostOrderInput!){
-        postOrder(input: $input){
-            user_id,
-            color,
-            title,
-            hashtag1,
-            hashtag2,
-            hashtag3,
-            is_pay
-        }
-    },
-`;
 /***********************************
  * graphQL end
  ***********************************/
@@ -105,15 +92,7 @@ function Home() {
     }
 
 
-
-    /***********************************
-     * apollo client
-     ***********************************/
-    const [postOrder] = useMutation(
-        POST_ORDER, { onCompleted: postOrderCompleted }
-    )
-
-    function execPostOrder(){
+    const clickSubmit = () => {
         const inputs = {
             user_id:JSON.parse(user).user.id,
             color:selectedColor,
@@ -123,24 +102,23 @@ function Home() {
             hashtag3:hashtag[2].tag_name,
             is_pay:"n"
         }
-        
+        // 세션에 주문정보 임시저장
+        sessionStorage.setItem('orderInfomation', JSON.stringify(inputs) );
 
-        if( window.confirm(`이 정보로 제품 주문할까요 ?`) ){
-            postOrder({ variables:{input: inputs} })
-        }
-    }
-
-    function postOrderCompleted(data){
-        console.log(`postOrderCompleted===${JSON.stringify(data)}`)
         alert(`결제화면으로 이동합니다.`)
         history.push("/order")
     }
 
 
+
+    /***********************************
+     * apollo client
+     ***********************************/
     const get_colors = useQuery(GET_COLORS);
 
     if (get_colors.loading) return <p className="loading">Loading...</p>
     if (get_colors.error) return <p className="error">Error :(</p>
+
 
 
     return (
@@ -235,7 +213,7 @@ function Home() {
                     <a 
                         className="btn_common"
                         style={{backgroundColor:`${selectedColor}`}}
-                        onClick={execPostOrder}
+                        onClick={clickSubmit}
                     >
                         제품 주문하기
                     </a>
