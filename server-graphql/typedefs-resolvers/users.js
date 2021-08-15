@@ -4,8 +4,8 @@ const dbWorks = require('../dbWorks.js')
 const typeDefs = gql`
     type User {
         id:ID!
-        email:String
-        password:String
+        email:String!
+        password:String!
         address:String
     }
 `

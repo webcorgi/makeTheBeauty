@@ -1,14 +1,6 @@
 const csvToJson = require('convert-csv-to-json')
 
 const database = {
-  teams: [],
-  people: [],
-  roles: [],
-  softwares: [],
-  equipments: [],
-  supplies: [],
-  
-  // start
   products:[],
   colors:[],
   users:[],

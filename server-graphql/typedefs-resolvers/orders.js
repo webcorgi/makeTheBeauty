@@ -5,22 +5,30 @@ const typeDefs = gql`
     type Order {
         id:ID!
         user_id:Int!
-        color:ColorEnum
-        title:String
+        color:ColorEnum!
+        title:String!
         hashtag1:String
         hashtag2:String
         hashtag3:String
-        ispay:Boolean
+        name:String
+        phone:Int
+        addr:String
+        price:Int
+        is_pay:String!
     }
 
     input PostOrderInput {
         user_id:Int!
-        color: ColorEnum
-        title: String
-        hashtag1: String
-        hashtag2: String
-        hashtag3: String
-        ispay:Boolean
+        color:ColorEnum!
+        title:String!
+        hashtag1:String
+        hashtag2:String
+        hashtag3:String
+        name:String
+        phone:Int
+        addr:String
+        price:Int
+        is_pay:String!
     }
 `
 
@@ -28,6 +36,7 @@ const resolvers = {
     Query: {
         orders: (parent, args) => dbWorks.getOrders(args),
         order: (parent, args) => dbWorks.getOrders(args)[0],
+        lastOrder: (parent, args) => dbWorks.getLastOrder(args),
     },
     Mutation:{
         postOrder: (parent, args) => dbWorks.postOrder(args),
