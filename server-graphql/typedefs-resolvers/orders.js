@@ -5,22 +5,22 @@ const typeDefs = gql`
     type Order {
         id:ID!
         user_id:Int!
-        product:ProductEnum
         color:ColorEnum
         title:String
         hashtag1:String
         hashtag2:String
         hashtag3:String
+        ispay:Boolean
     }
 
     input PostOrderInput {
         user_id:Int!
-        product: ProductEnum
         color: ColorEnum
         title: String
         hashtag1: String
         hashtag2: String
         hashtag3: String
+        ispay:Boolean
     }
 `
 
