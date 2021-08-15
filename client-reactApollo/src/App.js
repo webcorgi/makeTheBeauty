@@ -21,6 +21,19 @@ function App() {
     cache: new InMemoryCache()
   });
 
+
+    // 로그인 시 로컬스토리지에 user 정보 등록.. 로그인 구현하게 되면 소스 변경
+  const user = {
+      user:{
+      id:1,
+      email:"dh@dh.com",
+      address:"대구 남구 대명동"
+      }
+  }
+  localStorage.setItem("user", JSON.stringify(user))
+
+
+
   return (
     <ApolloProvider client={client}>
       <BrowserRouter>

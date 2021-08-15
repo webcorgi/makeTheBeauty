@@ -5,9 +5,9 @@ import { Link, useHistory } from 'react-router-dom';
 
 import { useQuery, useMutation, gql } from '@apollo/client';
 
-/**
- * graphQL
- */
+/***********************************
+ * graphQL start
+ ***********************************/
 const GET_COLORS = gql`
     query{
         colors{
@@ -17,15 +17,36 @@ const GET_COLORS = gql`
     }
 `;
 
+const POST_ORDER = gql`
+    mutation PostOrder($input: PostOrderInput!){
+        postOrder(input: $input){
+            user_id,
+            color,
+            title,
+            hashtag1,
+            hashtag2,
+            hashtag3,
+            ispay
+        }
+    },
+`;
+/***********************************
+ * graphQL end
+ ***********************************/
+
 
 
 function Home() {
-    const cx = classNames.bind(style);
-    const history = useHistory();
+    const cx = classNames.bind(style); // classNames
+    const history = useHistory(); // router
+    const user = localStorage.getItem('user') // for user_id
 
-    const [selectedColor, setSelectedColor] = useState('red');
-    const [productName, setProductName] = useState('');
-    const [hashtag, setHashtag] = useState([
+    /***********************************
+     * Set states
+     ***********************************/
+    const [selectedColor, setSelectedColor] = useState('red'); // for color
+    const [productName, setProductName] = useState(''); // for title
+    const [hashtag, setHashtag] = useState([ // for hashtag1,2,3
         {
             id:0,
             tag_name:'',
@@ -40,18 +61,20 @@ function Home() {
         },
     ]);
 
-
-    // 색상
+    /***********************************
+     * Function
+     ***********************************/
+    // 색상 fn
     const clickColor = (color) => {
         setSelectedColor(color);
     }
 
-    // 상품이름
+    // 상품이름 fn
     const changeProductName = (e) => {
         setProductName(e.target.value)
     }
 
-    // 해시태그1,2,3
+    // 해시태그1,2,3 fn
     const changeHashtag = (e, idx) => {
         const { value } = e.target;
 
@@ -65,15 +88,40 @@ function Home() {
         ];
 
         // id 기준으로 오름차순 정렬
-        getHashtag.sort((a,b) => { 
-            return a.id-b.id;
-        })
+        getHashtag.sort((a,b) => a.id-b.id)
 
         setHashtag(getHashtag)
     }
 
-    // 제품 주문하기
-    const clickSubmit = () => {
+
+
+    /***********************************
+     * apollo client
+     ***********************************/
+    const [postOrder] = useMutation(
+        POST_ORDER, { onCompleted: postOrderCompleted }
+    )
+
+    function execPostOrder(){
+        const inputs = {
+            user_id:JSON.parse(user).user.id,
+            color:selectedColor,
+            title:productName,
+            hashtag1:hashtag[0].tag_name,
+            hashtag2:hashtag[1].tag_name,
+            hashtag3:hashtag[2].tag_name,
+            ispay:false
+        }
+        
+
+        if( window.confirm(`${JSON.stringify(inputs)} 정보로 제품 주문을 주문할까요 ?`) ){
+            postOrder({ variables:{input: inputs} })
+        }
+    }
+
+    function postOrderCompleted(data){
+        console.log(`postOrderCompleted===${JSON.stringify(data)}`)
+        alert(`주문이 완료되었습니다. 결제화면으로 이동합니다.`)
         history.push("/order")
     }
 
@@ -172,11 +220,11 @@ function Home() {
                             })
                         }
                     </div>
-
+                    
                     <a 
                         className="btn_common"
                         style={{backgroundColor:`${selectedColor}`}}
-                        onClick={clickSubmit}
+                        onClick={execPostOrder}
                     >
                         제품 주문하기
                     </a>
