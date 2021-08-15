@@ -26,7 +26,7 @@ const POST_ORDER = gql`
             hashtag1,
             hashtag2,
             hashtag3,
-            ispay
+            is_pay
         }
     },
 `;
@@ -60,6 +60,17 @@ function Home() {
             tag_name:'',
         },
     ]);
+    const colorcode = () => {
+        if( selectedColor === "red" ) {
+            return "#ff0000"
+        }else if( selectedColor === "blue" ){
+            return "#0000ff"
+        }else if( selectedColor === "green" ){
+            return "#008000"
+        }else if( selectedColor === "violet" ){
+            return "#ee82ee"
+        }
+    }
 
     /***********************************
      * Function
@@ -110,18 +121,18 @@ function Home() {
             hashtag1:hashtag[0].tag_name,
             hashtag2:hashtag[1].tag_name,
             hashtag3:hashtag[2].tag_name,
-            ispay:false
+            is_pay:"n"
         }
         
 
-        if( window.confirm(`${JSON.stringify(inputs)} 정보로 제품 주문을 주문할까요 ?`) ){
+        if( window.confirm(`이 정보로 제품 주문할까요 ?`) ){
             postOrder({ variables:{input: inputs} })
         }
     }
 
     function postOrderCompleted(data){
         console.log(`postOrderCompleted===${JSON.stringify(data)}`)
-        alert(`주문이 완료되었습니다. 결제화면으로 이동합니다.`)
+        alert(`결제화면으로 이동합니다.`)
         history.push("/order")
     }
 
@@ -146,7 +157,7 @@ function Home() {
 
                 <div className={cx('Item', 'Item1')}>
                     <div className={style.InnerText}>
-                        <p className={style.ColorNum}>#291253</p>
+                        <p className={style.ColorNum}>{colorcode()}</p>
                         <p className={style.ItemName}>SHAMPOO</p>
                         <p className={style.CodeName}>{productName !== '' ? productName : 'BEAUTY'}</p>
                         <p className={style.Hashtag}>
@@ -166,7 +177,7 @@ function Home() {
 
                 <div className={cx('Item', 'Item2')}>
                     <div className={style.InnerText}>
-                        <p className={style.ColorNum}>#291253</p>
+                        <p className={style.ColorNum}>{colorcode()}</p>
                         <p className={style.ItemName}>CONDITIONER</p>
                         <p className={style.CodeName}>{productName !== '' ? productName : 'BEAUTY'}</p>
                         <p className={style.Hashtag}>
