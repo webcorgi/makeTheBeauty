@@ -1,0 +1,117 @@
+/* 상품수정 */
+.Modify {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background: #fff;
+  padding: 50px 20px;
+  box-shadow: -20px 0 20px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  overflow: auto;
+}
+
+.Modify h3 {
+  font-size: 24px;
+  padding-bottom: 40px;
+}
+
+.Inputbox {
+  margin-bottom: 10px;
+  position: relative;
+}
+.Inputbox p {
+  font-size: 14px;
+}
+
+.Inputbox button {
+  color: #fff;
+  position: absolute;
+  right: 10px;
+  top: 30px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.InputStyle {
+  height: 48px;
+  width: 100%;
+  line-height: 48px;
+  background: #f0f4f6;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  outline: 0;
+  text-indent: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.InputStyle:hover {
+  background: #fff;
+  border: 1px solid #73f3a0;
+  box-shadow: 0 0 1px 4px #e3fdec;
+}
+.InputStyle:focus {
+  background: #fff;
+  border: 1px solid #73f3a0;
+  box-shadow: 0 0 1px 4px #e3fdec;
+}
+.InputStyle::placeholder {
+  color: #aebac2;
+  font-size: 13px;
+}
+.InputStyle:disabled::placeholder {
+  color: #dee6ea;
+}
+
+.Colorbox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 40px;
+}
+
+.Colorbox input {
+  position: fixed;
+  left: -9999px;
+}
+
+.ColorCode {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 20px;
+  cursor: pointer;
+  padding-top: 10px;
+}
+
+input[value="red"] + .ColorCode {
+  background-color: red;
+}
+input[value="blue"] + .ColorCode {
+  background-color: blue;
+}
+input[value="green"] + .ColorCode {
+  background-color: green;
+}
+input[value="violet"] + .ColorCode {
+  background-color: violet;
+}
+
+.Colorbox input:checked + .ColorCode {
+  width: 30px;
+  height: 30px;
+}
+
+.Btnbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Btnbox button {
+  width: 49% !important;
+}

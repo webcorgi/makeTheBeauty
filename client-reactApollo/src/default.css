@@ -384,11 +384,16 @@ table {
   max-width: 100%;
   background: #fff;
 }
-
+.btn_common.w100 {
+  width: 100% !important;
+}
 .btn_common.cancel {
   background: #999;
 }
 
+.btn_common.modify {
+  width: 100%;
+}
 .btn_common {
   display: inline-block;
   height: 48px;
