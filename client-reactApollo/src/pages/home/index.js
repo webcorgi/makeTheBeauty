@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import { Link, useHistory } from 'react-router-dom';
 
 import { useQuery, useMutation, gql } from '@apollo/client';
-import {colorcode} from '../../util/colorcode'
+import {Colorcode} from '../../util/Colorcode'
 
 
 /***********************************
@@ -127,7 +127,7 @@ function Home() {
 
                 <div className={cx('Item', 'Item1')}>
                     <div className={style.InnerText}>
-                        <p className={style.ColorNum}>{colorcode(selectedColor)}</p>
+                        <p className={style.ColorNum}>{Colorcode(selectedColor)}</p>
                         <p className={style.ItemName}>SHAMPOO</p>
                         <p className={style.CodeName}>{productName !== '' ? productName : 'BEAUTY'}</p>
                         <p className={style.Hashtag}>
@@ -147,7 +147,7 @@ function Home() {
 
                 <div className={cx('Item', 'Item2')}>
                     <div className={style.InnerText}>
-                        <p className={style.ColorNum}>{colorcode(selectedColor)}</p>
+                        <p className={style.ColorNum}>{Colorcode(selectedColor)}</p>
                         <p className={style.ItemName}>CONDITIONER</p>
                         <p className={style.CodeName}>{productName !== '' ? productName : 'BEAUTY'}</p>
                         <p className={style.Hashtag}>

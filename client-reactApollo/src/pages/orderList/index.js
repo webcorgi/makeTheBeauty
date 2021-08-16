@@ -3,7 +3,6 @@ import style from './OrderList.module.css';
 import classNames from 'classnames/bind';
 import { Link, useHistory } from 'react-router-dom';
 import { useQuery, useMutation, gql } from '@apollo/client';
-import { onError } from "apollo-link-error";
 import { Colorcode } from '../../util/Colorcode'
 import Modify from '../../components/modify';
 

@@ -41,19 +41,7 @@ function Modify({ order, setIsShowModify }) {
      * states
      ***********************************/
     const [colorChecked, setColorChecked] = useState(order.color);
-    const [inputs, setInputs] = useState({
-        user_id:order.user_id,
-        color:order.color,
-        title:order.title,
-        hashtag1:order.hashtag1,
-        hashtag2:order.hashtag2,
-        hashtag3:order.hashtag3,
-        name:order.name,
-        phone:order.phone,
-        addr:order.addr,
-        price:order.price,
-        is_pay:order.is_pay
-    });
+    const [inputs, setInputs] = useState(order);
 
     /***********************************
      * apollo client
@@ -62,10 +50,24 @@ function Modify({ order, setIsShowModify }) {
     const [editOrder] = useMutation( EDIT_ORDER, { onCompleted: editOrderCompleted })
     
     function execEditOrder(){
+        const result_data = {
+            user_id:inputs.user_id,
+            color:inputs.color,
+            title:inputs.title,
+            hashtag1:inputs.hashtag1,
+            hashtag2:inputs.hashtag2,
+            hashtag3:inputs.hashtag3,
+            name:inputs.name,
+            phone:inputs.phone,
+            addr:inputs.addr,
+            price:inputs.price,
+            is_pay:inputs.is_pay
+        }
+
         editOrder({
             variables:{
                 id:order.id, 
-                input:inputs
+                input:result_data
             }
         })
     }
@@ -79,10 +81,12 @@ function Modify({ order, setIsShowModify }) {
      * functions
      ***********************************/
     const changeInputs = (e) => {
-        setInputs({
+        const new_data = {
             ...inputs,
             [e.target.name]:e.target.value
-        })
+        }
+        
+        setInputs(new_data)
     }
 
     const clickSubmit = () => {
@@ -112,7 +116,7 @@ function Modify({ order, setIsShowModify }) {
         </label>
     ,[]);
 
-    const Inputbox = useCallback(({ title, value, name, type }) => 
+    const Inputbox = useCallback(({ clickSubmit, title, value, name, type }) => 
         <div className={style.Inputbox}>
             <p>{title}</p>
             <input 
@@ -124,7 +128,7 @@ function Modify({ order, setIsShowModify }) {
             />
             <button onClick={clickSubmit} style={{backgroundColor:colorChecked}}>수정</button>
         </div>
-    , [colorChecked]);
+    ,[]);
 
 
     return (
@@ -139,13 +143,13 @@ function Modify({ order, setIsShowModify }) {
                     <InputColorCode color={"violet"} />
                 </div>
             </div>
-            <Inputbox title={"상품 이름"} value={inputs.title} name={'title'} type={"text"} />
-            <Inputbox title={"상품 해시태그1"} value={inputs.hashtag1} name={'hashtag1'} type={"text"} />
-            <Inputbox title={"상품 해시태그2"} value={inputs.hashtag2} name={'hashtag2'} type={"text"} />
-            <Inputbox title={"상품 해시태그3"} value={inputs.hashtag3} name={'hashtag3'} type={"text"} />
-            <Inputbox title={"주문자 이름"} value={inputs.name} name={'name'} type={"text"} />
-            <Inputbox title={"주문자 번호"} value={inputs.phone} name={'phone'} type={"number"} />
-            <Inputbox title={"주문자 주소"} value={inputs.addr} name={'addr'} type={"text"} />
+            <Inputbox clickSubmit={clickSubmit} title={"상품 이름"} value={inputs.title} name={'title'} type={"text"} />
+            <Inputbox clickSubmit={clickSubmit} title={"상품 해시태그1"} value={inputs.hashtag1} name={'hashtag1'} type={"text"} />
+            <Inputbox clickSubmit={clickSubmit} title={"상품 해시태그2"} value={inputs.hashtag2} name={'hashtag2'} type={"text"} />
+            <Inputbox clickSubmit={clickSubmit} title={"상품 해시태그3"} value={inputs.hashtag3} name={'hashtag3'} type={"text"} />
+            <Inputbox clickSubmit={clickSubmit} title={"주문자 이름"} value={inputs.name} name={'name'} type={"text"} />
+            <Inputbox clickSubmit={clickSubmit} title={"주문자 번호"} value={inputs.phone} name={'phone'} type={"number"} />
+            <Inputbox clickSubmit={clickSubmit} title={"주문자 주소"} value={inputs.addr} name={'addr'} type={"text"} />
             <button className={cx('btn_common', 'cancel', 'w100')} onClick={() => setIsShowModify(false)}>수정 취소</button>
         </div>
     );

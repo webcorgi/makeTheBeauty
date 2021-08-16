@@ -3,7 +3,6 @@ import style from './OrderEnd.module.css';
 import classNames from 'classnames/bind';
 import { Link, useHistory } from 'react-router-dom';
 import { useQuery, useMutation, gql } from '@apollo/client';
-import { onError } from "apollo-link-error";
 import { Colorcode } from '../../util/Colorcode'
 
 /***********************************
@@ -34,7 +33,7 @@ const GET_LAST_ORDER = gql`
 
 function OrderEnd() {
     useEffect(() => {
-        sessionStorage.removeItem('tempOrder'); // 주문시 필요했던 주문정보 삭제
+        // sessionStorage.removeItem('tempOrder'); // 주문시 필요했던 주문정보 삭제
     }, []);
 
     const cx = classNames.bind(style); // classNames
@@ -51,12 +50,14 @@ function OrderEnd() {
     /***********************************
      * apollo client
      ***********************************/
-    const { data } = useQuery(GET_LAST_ORDER, {
+    const { data, loading, error } = useQuery(GET_LAST_ORDER, {
         variables:{user_id:JSON.parse(user).user.id},
     });
     const proudct = data?.lastOrder;
 
-    
+    if(loading) return <div>loading...</div>
+    if(!proudct || error) return <div>error :(</div>
+
     return (
         <div className={style.OrderEnd}>
             <h2>주문이 완료되었습니다.</h2>
