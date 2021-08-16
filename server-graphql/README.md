@@ -7,6 +7,7 @@
 - graphQL
 - apollo-server ( graphQL server 라이브러리 )
 - convert-csv-to-json ( csv 파일 컨버팅 )
+- nodemon ( 자동 재실행 )
 
 ---
 
@@ -35,5 +36,3 @@ products.csv
 colors.csv
 orders.csv
 ```
-
-## testtt
