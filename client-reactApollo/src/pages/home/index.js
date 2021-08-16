@@ -4,6 +4,8 @@ import classNames from 'classnames/bind';
 import { Link, useHistory } from 'react-router-dom';
 
 import { useQuery, useMutation, gql } from '@apollo/client';
+import {colorcode} from '../../util/colorcode'
+
 
 /***********************************
  * graphQL start
@@ -47,17 +49,7 @@ function Home() {
             tag_name:'',
         },
     ]);
-    const colorcode = () => {
-        if( selectedColor === "red" ) {
-            return "#ff0000"
-        }else if( selectedColor === "blue" ){
-            return "#0000ff"
-        }else if( selectedColor === "green" ){
-            return "#008000"
-        }else if( selectedColor === "violet" ){
-            return "#ee82ee"
-        }
-    }
+    
 
     /***********************************
      * Function
@@ -103,9 +95,9 @@ function Home() {
             is_pay:"n"
         }
         // 세션에 주문정보 임시저장
-        sessionStorage.setItem('orderInfomation', JSON.stringify(inputs) );
+        sessionStorage.setItem('tempOrder', JSON.stringify(inputs) );
 
-        alert(`결제화면으로 이동합니다.`)
+        alert(`제품 구성을 마치셨군요 ! 주문화면으로 이동합니다.`)
         history.push("/order")
     }
 
@@ -135,7 +127,7 @@ function Home() {
 
                 <div className={cx('Item', 'Item1')}>
                     <div className={style.InnerText}>
-                        <p className={style.ColorNum}>{colorcode()}</p>
+                        <p className={style.ColorNum}>{colorcode(selectedColor)}</p>
                         <p className={style.ItemName}>SHAMPOO</p>
                         <p className={style.CodeName}>{productName !== '' ? productName : 'BEAUTY'}</p>
                         <p className={style.Hashtag}>
@@ -155,7 +147,7 @@ function Home() {
 
                 <div className={cx('Item', 'Item2')}>
                     <div className={style.InnerText}>
-                        <p className={style.ColorNum}>{colorcode()}</p>
+                        <p className={style.ColorNum}>{colorcode(selectedColor)}</p>
                         <p className={style.ItemName}>CONDITIONER</p>
                         <p className={style.CodeName}>{productName !== '' ? productName : 'BEAUTY'}</p>
                         <p className={style.Hashtag}>
@@ -210,13 +202,13 @@ function Home() {
                         }
                     </div>
                     
-                    <a 
+                    <button
                         className="btn_common"
                         style={{backgroundColor:`${selectedColor}`}}
                         onClick={clickSubmit}
                     >
-                        제품 주문하기
-                    </a>
+                        주문화면으로 가기
+                    </button>
                 </div>
             </div>
         </div>

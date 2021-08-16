@@ -385,6 +385,10 @@ table {
   background: #fff;
 }
 
+.btn_common.cancel {
+  background: #999;
+}
+
 .btn_common {
   display: inline-block;
   height: 48px;

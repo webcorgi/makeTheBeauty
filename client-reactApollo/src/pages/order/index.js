@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useQuery, useMutation, gql } from '@apollo/client';
 import DaumPostcode from 'react-daum-postcode';
 
+
 /***********************************
  * graphQL start
  ***********************************/
@@ -17,11 +18,11 @@ const POST_ORDER = gql`
             hashtag1,
             hashtag2,
             hashtag3,
-            is_pay,
             name,
             phone,
             addr,
-            price
+            price,
+            is_pay,
         }
     },
 `;
@@ -39,7 +40,7 @@ function Order() {
     /***********************************
      * states
      ***********************************/
-    const product = JSON.parse(sessionStorage.getItem('orderInfomation'));
+    const product = JSON.parse(sessionStorage.getItem('tempOrder'));
     const [name, setName] = useState(''); // 이름
     const [phone, setPhone] = useState(''); // 폰
     const [address, setAddress] = useState(''); // 주소 input
@@ -80,15 +81,18 @@ function Order() {
     }
 
 
-
     /***********************************
-     * apollo client & submit
+     * apollo client & functions
      ***********************************/
+    const postOrderCompleted = (data) => {
+        history.push("/orderEnd")
+    }
+
     const [postOrder] = useMutation(
-        POST_ORDER, { onCompleted: postOrderCompleted }
+        POST_ORDER ,{ onCompleted: postOrderCompleted }
     )
 
-    function execPostOrder(){
+    const execPostOrder = () => {
         // validation check
         if( !name ){
             alert('이름을 입력해주세요')
@@ -107,36 +111,26 @@ function Order() {
             return
         }
 
-
-        const inputs = {
-            user_id:JSON.parse(user).user.id,
-            color:product.color,
-            title:product.title,
-            hashtag1:product.hashtag1,
-            hashtag2:product.hashtag2,
-            hashtag3:product.hashtag3,
-            is_pay:"y",
-            name:name,
-            phone:phone,
-            addr:`${address}, ${defailAddress}`,
-            price:price
-        }
-        console.log(inputs)
-        
-
         if( window.confirm(`주문하시겠어요 ?`) ){
-            postOrder({ variables:{input: inputs} })
+            const inputs = {
+                user_id:JSON.parse(user).user.id,
+                color:product.color,
+                title:product.title,
+                hashtag1:product.hashtag1,
+                hashtag2:product.hashtag2,
+                hashtag3:product.hashtag3,
+                is_pay:"y",
+                name:name,
+                phone:Number(phone),
+                addr:`${address}, ${defailAddress}`,
+                price:Number(price)
+            }
+
+            postOrder(
+                { variables:{input: inputs} },
+            )
+            //.then(e =>  // sconsole.log(e) )
         }
-    }
-
-    function postOrderCompleted(){
-        history.push("/orderEnd")
-    }
-
-    
-    if (!product){
-        alert('제품 정보를 찾을 수 없어요. 제품 주문화면으로 돌아갈게요');
-        history.push('/')
     }
 
     return (
@@ -145,10 +139,10 @@ function Order() {
                 <h2>결제</h2>
                 <div className={style.Title}>주문자 / 배송지 정보</div>
                 <div className={style.InputName}>이름</div>
-                <input type="text" className={style.InputStyle} placeholder="이름 입력" onChange={setName} />
+                <input type="text" className={style.InputStyle} placeholder="이름 입력" onChange={(e) => setName(e.target.value)} />
 
                 <div className={style.InputName}>휴대폰 번호</div>
-                <input type="text" className={style.InputStyle} placeholder="휴대폰 번호 입력" onChange={setPhone} />
+                <input type="number" className={style.InputStyle} placeholder="휴대폰 번호 입력" onChange={(e) => setPhone(e.target.value)} />
 
 
                 <div className={style.InputName}>배송지 주소</div>
@@ -162,7 +156,7 @@ function Order() {
                         <img src="/images/pay/ico_search.svg" alt="주소 버튼 이미지" />
                     </button> 
                 </div>
-                <input type="text" className={style.InputStyle} placeholder="상세주소 입력" onChange={setDefailAddress} />
+                <input type="text" className={style.InputStyle} placeholder="상세주소 입력" onChange={(e) => setDefailAddress(e.target.value)} />
             </div>
             <div className={style.Right}>
                 <div className={style.OrderInfoBox}>
