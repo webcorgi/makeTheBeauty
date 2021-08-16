@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './OrderList.module.css';
 import classNames from 'classnames/bind';
 import { Link, useHistory } from 'react-router-dom';
@@ -10,8 +10,9 @@ import { colorcode } from '../../util/colorcode'
  * graphQL start
  ***********************************/
 const GET_ORDERS = gql`
-    query{
-        orders {
+    query {
+        orders{
+            id
             user_id
             color
             title
@@ -26,6 +27,14 @@ const GET_ORDERS = gql`
         }
     }
 `;
+
+const DELETE_ORDER = gql`
+    mutation DeleteOrder($id: ID!){
+        deleteOrder(id: $id){
+            id
+        }
+    }
+`;
 /***********************************
 * graphQL end
 ***********************************/
@@ -37,23 +46,32 @@ function OrderList() {
     const history = useHistory(); // router
     const user = localStorage.getItem('user') // for user_id
 
-
-    const clickEditOrder = () => {
-
+    
+    /***********************************
+     * functions
+     ***********************************/
+    const clickEditOrder = (id) => {
+        console.log("🚀 ~ file: index.js ~ line 61 ~ clickEditOrder ~ id", id)
     }
 
-    const clickDeleteOrder = () => {
-        
-    }
-
+    const clickDeleteOrder = (id) => deleteOrder({ variables:{id: id} });
+    const deleteOrderCompleted = () => alert('주문을 취소했어요');
+    
     /***********************************
      * apollo client
      ***********************************/
-    const {data, loading, error} = useQuery(GET_ORDERS);
+    const { data } = useQuery(GET_ORDERS);
 
+    const [deleteOrder] = useMutation(DELETE_ORDER,
+        {
+            onCompleted: deleteOrderCompleted,
+            refetchQueries: [
+                { query: GET_ORDERS }
+            ]
+        },
+    )
 
     const user_data = data?.orders.filter(order => order.user_id === JSON.parse(user).user.id );
-    console.log("🚀 ~ file: index.js ~ line 56 ~ OrderList ~ user_data", user_data)
 
     
     return (
@@ -61,12 +79,12 @@ function OrderList() {
             <h2>님의 주문내역</h2>
 
             <ul className={style.List}>
-                 {
-                    ( !user_data
+                {
+                    ( !user_data || user_data.length===0
                     ) ? ( <li>주문 내역이 없습니다.</li>
                     ) : ( 
                         user_data.map((order, i) => 
-                            <li>
+                            <li key={i}>
                                 <div className={style.Productbox}>
                                     <div className={cx('Item', 'Item1')}>
                                         <div className={style.InnerText}>
@@ -117,8 +135,8 @@ function OrderList() {
                                         <span>{order.price}원</span>
                                     </p>
                                     <div className={style.Btnbox}>
-                                        <button className="btn_common" onClick={clickEditOrder} style={{backgroundColor:order.color}}>주문수정</button>
-                                        <button className={cx('btn_common', 'cancel')} onClick={clickDeleteOrder}>주문취소</button>
+                                        <button className="btn_common" onClick={() => clickEditOrder(order.id)} style={{backgroundColor:order.color}}>주문수정</button>
+                                        <button className={cx('btn_common', 'cancel')} onClick={() => clickDeleteOrder(order.id)}>주문취소</button>
                                     </div>
                                 </div>
                             </li>

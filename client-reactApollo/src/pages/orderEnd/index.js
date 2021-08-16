@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import style from './OrderEnd.module.css';
 import classNames from 'classnames/bind';
 import { Link, useHistory } from 'react-router-dom';
@@ -33,10 +33,13 @@ const GET_LAST_ORDER = gql`
 
 
 function OrderEnd() {
-    sessionStorage.removeItem('tempOrder'); // 주문시 필요했던 주문정보 삭제
+    useEffect(() => {
+        sessionStorage.removeItem('tempOrder'); // 주문시 필요했던 주문정보 삭제
+    }, []);
+
     const cx = classNames.bind(style); // classNames
     const history = useHistory(); // router
-
+    const user = localStorage.getItem('user') // for user_id
 
     /***********************************
      * functions
@@ -48,15 +51,12 @@ function OrderEnd() {
     /***********************************
      * apollo client
      ***********************************/
-    const { data, loading, error } = useQuery(GET_LAST_ORDER, {
-        variables:{user_id:1},
+    const { data } = useQuery(GET_LAST_ORDER, {
+        variables:{user_id:JSON.parse(user).user.id},
     });
     const proudct = data?.lastOrder;
 
-    if (loading) return <div className="loading">Loading...</div>
-    if (error || !proudct) return <div className="error">Error :(</div>
     
-
     return (
         <div className={style.OrderEnd}>
             <h2>주문이 완료되었습니다.</h2>
