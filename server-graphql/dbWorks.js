@@ -26,9 +26,10 @@ const dbWorks = {
     getProducts: (args) => dataFiltered('products', args),
     getColors: (args) => dataFiltered('colors', args),
     getUsers: (args) => dataFiltered('users', args),
+
     getOrders: (args) => dataFiltered('orders', args),
     getLastOrder:(args) => {
-        const user_orders = database.orders.filter(o => o.user_id === args.user_id);
+        const user_orders = dataFiltered('orders', args).filter(o => o.user_id === args.user_id);
         return user_orders[user_orders.length-1];
     },
     

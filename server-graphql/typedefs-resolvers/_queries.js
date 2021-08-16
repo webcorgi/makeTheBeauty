@@ -8,6 +8,7 @@ const typeDefs = gql`
         orders: [Order]
         order(user_id:Int!): Order
         lastOrder(user_id:Int!): Order
+        myOrders(user_id:Int!): Order
 
         colors: [Color]
         color(id: ID!): Color
