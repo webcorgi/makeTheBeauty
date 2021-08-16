@@ -1,6 +1,6 @@
 # MAKE THE BEAUTY (개인 토이 프로젝트)
 
-#### 샴푸,컨디셔너 쇼핑몰
+#### 커스텀 샴푸,컨디셔너 쇼핑몰
 
 ## skill list
 
@@ -18,18 +18,16 @@
 npx create-react-app
 yarn add react-router-dom
 
+// graphQL & apollo client
+graphql
+@apollo/client
+convert-csv-to-json
+
 // css module class 여러개 중첩가능
 yarn add classnames
 
-nodemon
-graphql
-apollo-server
-convert-csv-to-json
-react-apollo
-
-// Apollo Client를 시작하는 가장 빠르고 쉬운 방법! Apollo Boost는 Apollo Client 사용을 시작하는 제로 구성 방법입니다.
-apollo-boost
-
+// 다음 주소 API
+react-daum-postcode
 ```
 
 ## folder structure
@@ -44,19 +42,18 @@ src
 ./layout/wrapper
 
 ./pages  => 각각 페이지 폴더작업 ( JS + CSS 로 완전한 모듈화 )
-./pages/home
-./pages/order
+./pages/home        // 상품 커스텀
+./pages/order       // 상품 주문
+./pages/orderEnd    // 주문 완료
+./pages/orderList   // 내 주문 목록
+./components/modify // 내 주문 목록 ( 주문수정 팝업 컴포넌트 )
 
 ./util   => 각종 유틸
 ./util/ScrollTop => 기능 : 라우터 이동 시 항상 스크롤 최상위에서 시작
+./util/Colorcode => 기능 : 컬러코드 6자리 뽑아내기
 ```
 
-## Schema
+### 제작 참고 자료
 
-```
-
-```
-
----
-
-graphql + apollo 추가참고소스 : https://codesandbox.io/s/graphql-react-apollo-client-f76p9?from-embed=&file=/package.json:284-296
+1. https://www.apollographql.com/docs/react/
+2. https://www.yalco.kr/

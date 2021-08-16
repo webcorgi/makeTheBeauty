@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import { Link, useHistory } from 'react-router-dom';
 import { useQuery, useMutation, gql } from '@apollo/client';
 import { onError } from "apollo-link-error";
-import { colorcode } from '../../util/colorcode'
+import { Colorcode } from '../../util/Colorcode'
 import Modify from '../../components/modify';
 
 /***********************************
@@ -96,7 +96,7 @@ function OrderList() {
                                     <div className={style.Productbox}>
                                         <div className={cx('Item', 'Item1')}>
                                             <div className={style.InnerText}>
-                                                <div className={style.ColorNum}>{colorcode(order.color)}</div>
+                                                <div className={style.ColorNum}>{Colorcode(order.color)}</div>
                                                 <div className={style.ItemName}>SHAMPOO</div>
                                                 <div className={style.CodeName}>{order.title !== '' ? order.title : 'BEAUTY'}</div>
                                                 <div className={style.Hashtag}>
@@ -111,7 +111,7 @@ function OrderList() {
 
                                         <div className={cx('Item', 'Item2')}>
                                             <div className={style.InnerText}>
-                                                <div className={style.ColorNum}>{colorcode(order.color)}</div>
+                                                <div className={style.ColorNum}>{Colorcode(order.color)}</div>
                                                 <div className={style.ItemName}>CONDITIONER</div>
                                                 <div className={style.CodeName}>{order.title !== '' ? order.title : 'BEAUTY'}</div>
                                                 <div className={style.Hashtag}>

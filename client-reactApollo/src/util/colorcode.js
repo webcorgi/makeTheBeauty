@@ -1,5 +1,5 @@
 
-export function colorcode(color){
+export function Colorcode(color){
     if( color === "red" ) {
         return "#ff0000"
     }else if( color === "blue" ){
