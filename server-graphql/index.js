@@ -1,4 +1,5 @@
-import {ApolloServer} from 'apollo-server'
+// import {ApolloServer} from 'apollo-server'
+import { ApolloServer } from "@saeris/apollo-server-vercel";
 import queries from './typedefs-resolvers/_queries'
 import mutations from './typedefs-resolvers/_mutations'
 import enums from './typedefs-resolvers/_enums'
@@ -40,7 +41,9 @@ const server =  new ApolloServer({
     introspection: true,
     playground: true
 })
-
+/* 
 server.listen().then(({url}) => {
     console.log(`🚀  Server ready at ${url}`)
 })
+ */
+export default server.createHandler();
