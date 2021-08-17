@@ -1,4 +1,5 @@
-const { ApolloServer } = require('apollo-server')
+// const { ApolloServer } = require('apollo-server')
+const { ApolloServer } = require('@saeris/apollo-server-vercel')
 
 const queries = require('./typedefs-resolvers/_queries')
 const mutations = require('./typedefs-resolvers/_mutations')
@@ -25,7 +26,7 @@ const resolvers = [
     users.resolvers,
 ]
 
-const server =  new ApolloServer({
+/* const server =  new ApolloServer({
     typeDefs, 
     resolvers,
     introspection: true,
@@ -35,3 +36,13 @@ const server =  new ApolloServer({
 server.listen().then(({url}) => {
     console.log(`🚀  Server ready at ${url}`)
 })
+*/
+
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    playground: true,
+    introspection: true,
+});
+
+export default server.createHandler();
