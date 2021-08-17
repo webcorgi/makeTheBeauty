@@ -5,14 +5,20 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "nodemon index.js"
+    "start": "nodemon --exec babel-node index.js"
   },
   "author": "webcogy",
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.19.0",
+    "babel-node": "0.0.1-security",
     "convert-csv-to-json": "^1.0.0",
     "graphql": "15.5.1",
     "nodemon": "2.0.12"
+  },
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-stage-3": "6.24.1"
   }
 }
