@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import style from './Home.module.css';
+import style from './home.module.css';
 import classNames from 'classnames/bind';
 import { Link, useHistory } from 'react-router-dom';
 
