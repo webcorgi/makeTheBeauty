@@ -5,10 +5,9 @@ import enums from './typedefs-resolvers/_enums'
 import products from './typedefs-resolvers/products'
 import colors from './typedefs-resolvers/colors'
 import orders from './typedefs-resolvers/orders'
-import users from './typedefs-resolvers/users' 
+import users from './typedefs-resolvers/users'
 */
 
-const { ApolloServer } = require('apollo-server')
 const queries = require('./typedefs-resolvers/_queries')
 const mutations = require('./typedefs-resolvers/_mutations')
 const enums = require('./typedefs-resolvers/_enums')
@@ -16,6 +15,11 @@ const products = require('./typedefs-resolvers/products')
 const colors = require('./typedefs-resolvers/colors')
 const orders = require('./typedefs-resolvers/orders')
 const users = require('./typedefs-resolvers/users')
+
+const fs = require('fs');
+const https = require('https')
+const { ApolloServer } = require('apollo-server-express')
+const app = express()
 
 const typeDefs = [
     queries,
@@ -33,14 +37,20 @@ const resolvers = [
     orders.resolvers,
     users.resolvers,
 ]
-
-const server =  new ApolloServer({
-    typeDefs, 
+const server = new ApolloServer({
+    typeDefs,
     resolvers,
     introspection: true,
-    playground: true
+    playground: true,
 })
 
-server.listen().then(({url}) => {
-    console.log(`🚀  Server ready at ${url}`)
-})
+const options = {
+    key: fs.readFileSync("/usr/syno/etc/certificate/_archive/Q9FWHd/privkey.pem"),
+    cert: fs.readFileSync("/usr/syno/etc/certificate/_archive/Q9FWHd/cert.pem"),
+};
+const httpsServer = https.createServer(options, app);
+
+server.applyMiddleware({ app });
+httpsServer.listen(4000, () => {
+    console.log('Apollo Server with HTTPS listening on port 4000');
+});
