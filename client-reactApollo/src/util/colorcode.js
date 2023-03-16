@@ -1,4 +1,3 @@
-
 export function Colorcode(color){
     if( color === "red" ) {
         return "#ff0000"

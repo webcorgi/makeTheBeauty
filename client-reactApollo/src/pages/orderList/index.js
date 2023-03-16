@@ -51,7 +51,7 @@ function OrderList() {
      ***********************************/
     const [orderForModify, setOrderForModify] = useState('');
     const [isShowModify, setIsShowModify] = useState(false);
-    
+
     /***********************************
      * functions
      ***********************************/
@@ -62,7 +62,7 @@ function OrderList() {
 
     const clickDeleteOrder = (id) => deleteOrder({ variables:{id: id} });
     const deleteOrderCompleted = () => alert('주문을 취소했어요');
-    
+
     /***********************************
      * apollo client
      ***********************************/
