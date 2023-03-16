@@ -20,7 +20,7 @@ function App() {
    * apollo client start
   ***********************************/
   const client = new ApolloClient({
-    uri: 'https://onedev.i234.me/dhweb/server/makethebeauty',
+    uri: 'https://onedev.i234.me:4000',
     // uri: 'http://localhost:4000',
     cache: new InMemoryCache()
   });
