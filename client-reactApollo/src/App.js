@@ -20,8 +20,7 @@ function App() {
    * apollo client start
   ***********************************/
   const client = new ApolloClient({
-    uri: 'https://onedev.i234.me:4000',
-    // uri: 'http://localhost:4000',
+    uri: 'http://localhost:4000',
     cache: new InMemoryCache()
   });
   
@@ -58,10 +57,10 @@ function App() {
           <Header />
           <Wrapper>
             <Switch>            
-                <Route exact path="/" component={Home}/>  
-                <Route path="/order" component={Order}/>
-                <Route path="/orderEnd" component={OrderEnd}/>
-                <Route path="/orderList" component={OrderList}/>
+                <Route exact path="/beauty" component={Home}/>  
+                <Route path="/beauty/order" component={Order}/>
+                <Route path="/beauty/orderEnd" component={OrderEnd}/>
+                <Route path="/beauty/orderList" component={OrderList}/>
             </Switch>
           </Wrapper>
           <Footer />

@@ -44,7 +44,7 @@ function OrderEnd() {
      * functions
      ***********************************/
     const moveOrderList = () => {
-        history.push("/orderList")
+        history.push("/beauty/orderList")
     }
 
     /***********************************
