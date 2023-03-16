@@ -11,13 +11,13 @@ function Header() {
     return (
         <>
             <div className={style.HeaderPc}>
-                <Link to="/beauty" className={style.Logo}>MAKE THE BEAUTY</Link>
-                <Link to="/beauty">ORDER</Link>
-                <Link to="/beauty/orderList">ORDER LIST</Link>
+                <Link to="/" className={style.Logo}>MAKE THE BEAUTY</Link>
+                <Link to="/">ORDER</Link>
+                <Link to="/orderList">ORDER LIST</Link>
             </div>
 
             <div className={style.HeaderMobile}>
-                <Link to="/beauty" className={style.Logo}>MAKE THE BEAUTY</Link>
+                <Link to="/" className={style.Logo}>MAKE THE BEAUTY</Link>
                 <button className={style.NavOpen} onClick={navOpener}>
                     <img src="/images/common/hamburger.svg" alt="open navigation"/>
                 </button>
