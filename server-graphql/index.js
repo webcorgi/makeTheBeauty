@@ -16,6 +16,7 @@ const colors = require('./typedefs-resolvers/colors')
 const orders = require('./typedefs-resolvers/orders')
 const users = require('./typedefs-resolvers/users')
 
+const express = require('express')
 const fs = require('fs');
 const https = require('https')
 const { ApolloServer } = require('apollo-server-express')
@@ -30,13 +31,13 @@ const typeDefs = [
     orders.typeDefs,
     users.typeDefs,
 ]
-
 const resolvers = [
     products.resolvers,
     colors.resolvers,
     orders.resolvers,
     users.resolvers,
 ]
+
 const server = new ApolloServer({
     typeDefs,
     resolvers,
